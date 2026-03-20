@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
   // Match server port: server uses API_PORT from .env (often 3000) or default 3001
-  const apiTarget = 'https://testrepo-hzuk.onrender.com';
+  const apiTarget = env.VITE_API_PROXY_TARGET || 'http://localhost:3000';
 
   return {
     plugins: [react()],
