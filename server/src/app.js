@@ -63,7 +63,7 @@ app.use((req, res, next) => {
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   next();
 });
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(requestLogger);
 
 // Webhooks need raw body — register before express.json()
