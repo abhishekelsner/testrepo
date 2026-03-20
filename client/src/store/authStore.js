@@ -45,6 +45,15 @@ export const useAuthStore = create((set, getState) => ({
   login: async (email, password) => {
     set({ error: null });
     const { data } = await post(ENDPOINTS.AUTH_LOGIN, { email, password });
+    // A successful auth response must include user + token payload.
+    // If we get 200 with empty/non-API body, it usually means /api is routed to frontend/CDN.
+    if (!data || typeof data !== 'object' || (!data.user && !data.token)) {
+      const err = new Error(
+        'Invalid login response from server. Check that VITE_API_BASE_URL points to your backend API.'
+      );
+      err.code = 'INVALID_LOGIN_RESPONSE';
+      throw err;
+    }
     if (data.token) localStorage.setItem(TOKEN_KEY, data.token);
     if (data.refreshToken) localStorage.setItem(REFRESH_KEY, data.refreshToken);
     set({ user: data.user });

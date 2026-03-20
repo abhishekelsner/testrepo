@@ -35,6 +35,9 @@ function Login() {
         err.response?.data?.error ||
         err.response?.data?.message ||
         "Invalid email or password";
+      if (err.code === 'INVALID_LOGIN_RESPONSE') {
+        msg = err.message;
+      }
       if (!err.response && (err.code === 'ECONNREFUSED' || err.message?.includes('Network'))) {
         msg = "Cannot reach server. Start the API (e.g. npm run dev in server folder on port 3001).";
       }

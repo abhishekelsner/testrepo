@@ -5,7 +5,15 @@
  */
 import axios from 'axios';
 
-const baseURL = import.meta.env.VITE_API_BASE_URL || '/api';
+const envBaseUrl = import.meta.env.VITE_API_BASE_URL;
+const isProd = import.meta.env.PROD;
+const baseURL = (envBaseUrl && envBaseUrl.trim()) || (!isProd ? '/api' : '');
+
+if (isProd && !baseURL) {
+  throw new Error(
+    'Missing VITE_API_BASE_URL in production. Set it to your live API URL, e.g. https://api.example.com/api'
+  );
+}
 
 const api = axios.create({
   baseURL,
