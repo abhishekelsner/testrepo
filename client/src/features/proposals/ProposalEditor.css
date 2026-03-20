@@ -1,0 +1,767 @@
+/**
+ * Proposal editor — Qwilr-style UI.
+ * Includes: image toolbar, section background panel, block toolbar, palette, library.
+ */
+
+/* ——— Editor shell ——— */
+.proposal-editor {
+  --editor-header-bg: #fff;
+  --editor-header-border: #e8e8e8;
+  --editor-accent: #1677ff;
+  --editor-accent-purple: #722ed1;
+  --editor-share-bg: #722ed1;
+  --editor-share-hover: #531dab;
+  --editor-sidebar-bg: #fafafa;
+  --editor-canvas-bg: #ffffff;
+  --editor-block-bg: #fff;
+  --editor-block-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  --editor-block-radius: 8px;
+  --editor-toolbar-bg: rgba(255,255,255,0.98);
+  --editor-toolbar-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* ——— Header (white, minimal) ——— */
+.proposal-editor .ant-layout-header.editor-header,
+.proposal-editor .editor-header {
+  background: var(--editor-header-bg) !important;
+  border-bottom: 1px solid var(--editor-header-border);
+  color: #1f1f1f;
+  padding: 0 20px !important;
+  height: 56px;
+  line-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.proposal-editor .editor-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.proposal-editor .editor-header-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.proposal-editor .editor-header-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1f1f1f;
+  border: none;
+  background: transparent;
+  padding: 4px 6px;
+  border-radius: 4px;
+  max-width: 280px;
+}
+
+.proposal-editor .editor-header-title:hover,
+.proposal-editor .editor-header-title:focus {
+  background: #f5f5f5;
+  outline: none;
+}
+
+.proposal-editor .editor-header-create-faster {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  color: var(--editor-accent);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.proposal-editor .editor-header-create-faster:hover {
+  background: rgba(22, 119, 255, 0.08);
+}
+
+.proposal-editor .editor-header-draft {
+  font-size: 12px;
+  color: #8c8c8c;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.proposal-editor .editor-header-draft-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--editor-accent-purple);
+}
+
+.proposal-editor .editor-header-share {
+  background: var(--editor-share-bg) !important;
+  color: #fff !important;
+  border: none;
+  font-weight: 500;
+  padding: 6px 16px;
+  border-radius: 6px;
+}
+
+.proposal-editor .editor-header-share:hover {
+  background: var(--editor-share-hover) !important;
+  color: #fff !important;
+}
+
+.proposal-editor .editor-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.proposal-editor .editor-header-actions .ant-btn-text {
+  color: #595959;
+}
+
+.proposal-editor .editor-header-actions .ant-btn-text:hover {
+  color: var(--editor-accent);
+}
+
+/* ——— Library sidebar — fixed/sticky with independent scroll ——— */
+.proposal-editor .ant-layout-sider.editor-sidebar {
+  position: sticky !important;
+  top: 56px;
+  height: calc(100vh - 56px) !important;
+  max-height: calc(100vh - 56px);
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.proposal-editor .editor-sidebar {
+  background: var(--editor-sidebar-bg) !important;
+  border-right: 1px solid var(--editor-header-border);
+}
+
+.proposal-editor .editor-sidebar .ant-tabs-tab {
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.proposal-editor .editor-sidebar .ant-tabs-tab-active {
+  color: var(--editor-accent);
+}
+
+.proposal-editor .editor-sidebar .ant-tabs-ink-bar {
+  background: var(--editor-accent);
+}
+
+.proposal-editor .editor-sidebar .saved-blocks-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f1f1f;
+  margin-bottom: 10px;
+}
+
+.proposal-editor .editor-sidebar .search-saved-blocks {
+  margin-bottom: 16px;
+}
+
+.proposal-editor .editor-sidebar .search-saved-blocks .ant-input {
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.proposal-editor .editor-sidebar .build-pages-card {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 16px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+.proposal-editor .editor-sidebar .build-pages-card h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f1f1f;
+  margin: 0 0 6px 0;
+}
+
+.proposal-editor .editor-sidebar .build-pages-card p {
+  font-size: 12px;
+  color: #8c8c8c;
+  margin: 0 0 12px 0;
+  line-height: 1.45;
+}
+
+.proposal-editor .editor-sidebar .explore-blocks-btn {
+  width: 100%;
+  border-radius: 8px;
+  font-weight: 500;
+  background: var(--editor-share-bg);
+  border-color: var(--editor-share-bg);
+}
+
+.proposal-editor .editor-sidebar .explore-blocks-btn:hover {
+  background: var(--editor-share-hover);
+  border-color: var(--editor-share-hover);
+}
+
+/* ——— Canvas: full width ——— */
+.proposal-editor .editor-canvas-wrap {
+  background: var(--editor-canvas-bg);
+  min-height: calc(100vh - 56px);
+  width: 100%;
+}
+
+.proposal-editor .editor-canvas {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0 0 80px;
+  box-sizing: border-box;
+}
+
+/* ——— Placeholder ——— */
+.proposal-editor .editor-placeholder {
+  color: #bfbfbf;
+  font-size: 15px;
+  padding: 12px 0;
+  user-select: none;
+}
+
+.proposal-editor .editor-type-slash {
+  color: #8c8c8c;
+  font-size: 14px;
+  padding: 8px 0 24px;
+  user-select: none;
+}
+
+/* ——— Block card ——— */
+.proposal-editor .editor-block-card {
+  background: var(--editor-block-bg);
+  border-radius: 0;
+  box-shadow: none;
+  margin-bottom: 0;
+  padding: 0;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.proposal-editor .editor-block-card.active {
+  outline: 2px solid var(--editor-accent);
+  outline-offset: -2px;
+}
+
+.proposal-editor .editor-block-card:hover:not(.active) {
+  background: #fafafa;
+}
+
+.proposal-editor .editor-block-card.has-bg:hover {
+  background: transparent;
+}
+
+/* Block cards with a custom background have no default white bg */
+.proposal-editor .editor-block-card.has-bg {
+  background: transparent;
+}
+
+/* ——— Block toolbar ——— */
+.proposal-editor .editor-block-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px 4px;
+  background: rgba(255,255,255,0.95);
+  border-bottom: 1px solid #f0f0f0;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.proposal-editor .editor-block-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.proposal-editor .editor-block-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.proposal-editor .editor-block-toolbar .drag-handle {
+  cursor: grab;
+  padding: 2px 4px;
+  display: inline-flex;
+  color: #8c8c8c;
+}
+
+.proposal-editor .editor-block-toolbar .drag-handle:hover {
+  color: #1f1f1f;
+}
+
+.proposal-editor .editor-block-toolbar .ant-btn-text,
+.proposal-editor .editor-block-toolbar .ant-btn-default {
+  color: #8c8c8c;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+
+.proposal-editor .editor-block-toolbar .ant-btn-text:hover,
+.proposal-editor .editor-block-toolbar .ant-btn-default:hover {
+  color: var(--editor-accent);
+  background: rgba(22, 119, 255, 0.08);
+}
+
+/* Block content padding */
+.proposal-editor .editor-block-content {
+  padding: 16px;
+}
+
+/* ——— Global content container ——— */
+.editor-content-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ——— Image block toolbar ——— */
+.image-block-toolbar {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(30, 30, 30, 0.88);
+  border-radius: 8px;
+  padding: 4px 6px;
+  z-index: 20;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  backdrop-filter: blur(4px);
+  white-space: nowrap;
+}
+
+.img-tb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.12s;
+  padding: 0;
+}
+
+.img-tb-btn:hover {
+  background: rgba(255,255,255,0.18);
+}
+
+.img-tb-btn-alt {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  width: 32px;
+}
+
+.img-tb-btn-danger:hover {
+  background: rgba(255, 77, 79, 0.3);
+  color: #ff7875;
+}
+
+.img-tb-sep {
+  width: 1px;
+  height: 18px;
+  background: rgba(255,255,255,0.2);
+  margin: 0 2px;
+}
+
+/* wider buttons that include a label text */
+.img-tb-btn-label {
+  width: auto;
+  padding: 0 7px;
+  gap: 2px;
+}
+
+/* active/toggled state (e.g. overlay on, bold on) */
+.img-tb-btn-active {
+  background: rgba(255,255,255,0.22);
+  color: #69c0ff;
+}
+
+/* color swatch button */
+.img-tb-color-btn {
+  width: 28px;
+  cursor: pointer;
+}
+.img-tb-color-btn input[type="color"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* ——— Image library grid card ——— */
+.img-card-wrap {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1.5px solid #f0f0f0;
+  background: #f8f8f8;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+
+.img-card-wrap:hover {
+  border-color: #1677ff;
+  box-shadow: 0 2px 10px rgba(22, 119, 255, 0.18);
+}
+
+/* Fixed-height thumbnail area */
+.img-card-wrap .img-card-thumb {
+  position: relative;
+  height: 90px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #efefef;
+}
+
+.img-card-wrap .img-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+/* Scale image on card hover (pure CSS, no JS) */
+.img-card-wrap:hover .img-card-thumb img {
+  transform: scale(1.06);
+}
+
+/* Hover overlay — shown via CSS, not JS */
+.img-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(22, 119, 255, 0.65);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+.img-card-wrap:hover .img-card-overlay {
+  opacity: 1;
+}
+
+/* Filename label */
+.img-card-name {
+  font-size: 10px;
+  color: #555;
+  padding: 4px 7px 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: #fff;
+  line-height: 1.4;
+  border-top: 1px solid #f0f0f0;
+}
+
+/* Delete button — hidden until hover */
+.img-card-wrap .img-card-del-btn {
+  display: none;
+}
+
+.img-card-wrap:hover .img-card-del-btn {
+  display: flex !important;
+}
+
+/* ——— HTML block preview in edit mode ——— */
+.html-block-edit-preview {
+  cursor: pointer;
+  transition: outline 0.12s;
+}
+
+.html-block-edit-preview:hover {
+  outline: 2px dashed rgba(22, 119, 255, 0.35);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ——— Section background panel (popover) ——— */
+.section-bg-popover .ant-popover-inner {
+  padding: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.14);
+}
+
+.section-bg-panel {
+  padding: 14px;
+  width: 220px;
+}
+
+.section-bg-tab {
+  flex: 1;
+  padding: 5px 8px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid #e8e8e8;
+  background: #fafafa;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #595959;
+  transition: all 0.12s;
+}
+
+.section-bg-tab:first-child { border-radius: 4px 0 0 4px; }
+.section-bg-tab:last-child  { border-radius: 0 4px 4px 0; }
+.section-bg-tab:not(:first-child) { margin-left: -1px; }
+
+.section-bg-tab.active {
+  background: var(--editor-accent);
+  color: #fff;
+  border-color: var(--editor-accent);
+  z-index: 1;
+}
+
+.section-bg-swatches {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.swatch {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+  position: relative;
+}
+
+.swatch:hover {
+  transform: scale(1.12);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.swatch.selected::after {
+  content: '✓';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* ——— Floating block palette ——— */
+.proposal-editor .editor-block-palette {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  padding: 12px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  min-width: 280px;
+  border: 1px solid #e8e8e8;
+}
+
+.proposal-editor .editor-block-palette-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 8px;
+  border: none;
+  border-radius: 8px;
+  background: #fafafa;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  color: #1f1f1f;
+  transition: background 0.15s;
+}
+
+.proposal-editor .editor-block-palette-btn:hover {
+  background: rgba(22, 119, 255, 0.1);
+  color: var(--editor-accent);
+}
+
+.proposal-editor .editor-block-palette-btn .icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.proposal-editor .editor-block-palette-btn.text .icon-wrap { background: #f0f0f0; color: #595959; }
+.proposal-editor .editor-block-palette-btn.splash .icon-wrap { background: #fff7e6; color: #d46b08; }
+.proposal-editor .editor-block-palette-btn.quote .icon-wrap { background: #f9f0ff; color: #722ed1; }
+.proposal-editor .editor-block-palette-btn.video .icon-wrap { background: #fff1f0; color: #cf1322; }
+.proposal-editor .editor-block-palette-btn.embed .icon-wrap { background: #e6f4ff; color: #1677ff; }
+.proposal-editor .editor-block-palette-btn.accept .icon-wrap { background: #f6ffed; color: #52c41a; }
+
+/* ——— Add content trigger ——— */
+.proposal-editor .editor-add-content-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 0;
+  color: #8c8c8c;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 1px dashed transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.proposal-editor .editor-add-content-trigger:hover {
+  color: var(--editor-accent);
+  border-color: var(--editor-accent);
+}
+
+.proposal-editor .editor-add-content-trigger .plus-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #8c8c8c;
+  flex-shrink: 0;
+}
+
+.proposal-editor .editor-add-content-trigger:hover .plus-circle {
+  border-color: var(--editor-accent);
+  color: var(--editor-accent);
+}
+
+/* ——— Drop zone ——— */
+.proposal-editor .editor-drop-zone {
+  min-height: 48px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  border: 2px dashed transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: #8c8c8c;
+  transition: all 0.15s;
+}
+
+.proposal-editor .editor-drop-zone.active {
+  border-color: var(--editor-accent);
+  background: rgba(22, 119, 255, 0.06);
+  color: var(--editor-accent);
+}
+
+/* ——— HELP button ——— */
+.proposal-editor .editor-help-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 50;
+  padding: 0 16px;
+  height: 36px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 500;
+  background: var(--editor-share-bg);
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(114, 46, 209, 0.35);
+  cursor: pointer;
+  gap: 6px;
+}
+
+.proposal-editor .editor-help-btn:hover {
+  background: var(--editor-share-hover);
+  color: #fff;
+  transform: scale(1.02);
+}
+
+/* ——— HTML block render (shared by edit preview + read mode) ——— */
+.html-block-render {
+  line-height: 1.6;
+}
+
+.html-block-render table {
+  border-collapse: collapse;
+}
+
+.html-block-render img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ——— Snippet card (Explore > Snippets) ——— */
+.snippet-card {
+  transition: transform 0.15s, box-shadow 0.15s;
+  border: 1.5px solid #e8e8e8 !important;
+}
+
+.snippet-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.10) !important;
+  border-color: #1677ff !important;
+}
+
+/* ——— Explore images grid ——— */
+.explore-img-card {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  transition: border-color 0.15s, transform 0.15s;
+  cursor: pointer;
+}
+
+.explore-img-card:hover {
+  border-color: #1677ff;
+  transform: scale(1.02);
+}
+
+/* ——— Saved block notification toast ——— */
+.ant-message-notice-content {
+  border-radius: 8px !important;
+  font-size: 13px !important;
+}
+

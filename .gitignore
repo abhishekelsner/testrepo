@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Environment (never commit real URIs or secrets)
+.env
+.env.local
+.env.*.local
+
+# Build
+dist/
+build/
+.next/
+.claude
+
+# Logs and debug
+*.log
+npm-debug.log*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test
+coverage/
+.nyc_output/
+
+# Misc
+*.tgz
+.cache/

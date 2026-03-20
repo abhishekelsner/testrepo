@@ -1,0 +1,329 @@
+/**
+ * Auth pages (Login, Register, Forgot/Reset password).
+ * Scoped styles for card, inputs, primary button, and links.
+ */
+
+.auth-page {
+  min-height: 100vh;
+  background: var(--gradient-background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
+  box-sizing: border-box;
+}
+
+.auth-page .auth-logo {
+  margin-bottom: 24px;
+  flex-shrink: 0;
+}
+
+.auth-page .auth-logo img {
+  height: 56px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 42, 66, 0.2);
+  background: var(--bg-white);
+  overflow: hidden;
+}
+
+.auth-card .ant-card-head {
+  border-bottom: 1px solid var(--border-color);
+  padding: 20px 24px 16px;
+}
+
+.auth-card .ant-card-head-title {
+  font-size: var(--font-size-22px);
+  font-weight: var(--font-weight-600);
+  color: var(--text-primary);
+  padding: 0;
+}
+
+.auth-card .ant-card-body {
+  padding: 24px 24px 24px;
+  text-align: left;
+}
+
+/* Logo inside card (login): above "Sign In" */
+.auth-card .auth-logo-inside {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.auth-card .auth-logo-inside img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+.auth-card .auth-title {
+  font-size: var(--font-size-22px);
+  font-weight: var(--font-weight-600);
+  color: var(--text-primary);
+  margin: 0 0 8px;
+  line-height: 1.3;
+  text-align: left;
+}
+
+/* Subtitle */
+.auth-card .auth-subtitle {
+  color: var(--text-tertiary);
+  font-size: var(--font-size-14px);
+  margin-bottom: 24px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* Form items: consistent spacing and label weight */
+.auth-card .ant-form-item {
+  margin-bottom: 20px;
+}
+
+.auth-card .ant-form-item-label > label {
+  font-weight: var(--font-weight-500);
+  color: var(--text-primary);
+  font-size: var(--font-size-14px);
+}
+
+.auth-card .ant-form-item-explain-error {
+  font-size: var(--font-size-12px);
+  margin-top: 4px;
+}
+
+/* Inputs: clean border, smooth focus/hover */
+.auth-card .ant-input,
+.auth-card .ant-input-affix-wrapper {
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  background: var(--bg-white);
+  color: var(--text-primary);
+  font-size: var(--font-size-14px);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.auth-card .ant-input::placeholder,
+.auth-card .ant-input-affix-wrapper input::placeholder {
+  color: var(--input-placeholder);
+}
+
+.auth-card .ant-input:hover,
+.auth-card .ant-input-affix-wrapper:hover:not(.ant-input-affix-wrapper-disabled) {
+  border-color: var(--secondary-color);
+}
+
+.auth-card .ant-input:focus,
+.auth-card .ant-input-affix-wrapper-focused {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(3, 73, 122, 0.12);
+  outline: none;
+}
+
+.auth-card .ant-input-affix-wrapper .ant-input-prefix,
+.auth-card .ant-input-affix-wrapper .ant-input-suffix {
+  color: var(--text-gray-shade1);
+}
+
+/* Primary button: brand blue with clear hover/active */
+.auth-card .ant-btn-primary {
+  background: var(--btn-bg-primary) !important;
+  border-color: var(--btn-bg-primary) !important;
+  color: var(--text-white) !important;
+  font-weight: var(--font-weight-600);
+  letter-spacing: 0.02em;
+  height: 44px;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.auth-card .ant-btn-primary:hover {
+  background: var(--btn-bg-primary-hover) !important;
+  border-color: var(--btn-bg-primary-hover) !important;
+  color: var(--text-white) !important;
+  transform: translateY(-1px);
+}
+
+.auth-card .ant-btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Links: brand secondary with hover */
+.auth-card .auth-links {
+  margin-top: 20px;
+  font-size: var(--font-size-14px);
+  line-height: 1.6;
+  text-align: left;
+}
+
+.auth-card .auth-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.auth-card .auth-links a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.auth-card .auth-links .auth-links-secondary {
+  margin-top: 12px;
+  color: var(--text-tertiary);
+}
+
+.auth-card .auth-links .auth-links-secondary a {
+  color: var(--text-secondary);
+}
+
+/* Error message */
+.auth-card .auth-error {
+  color: var(--text-danger);
+  font-size: var(--font-size-14px);
+  margin-bottom: 16px;
+  padding: 10px 12px;
+  background: rgba(210, 75, 78, 0.08);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(210, 75, 78, 0.2);
+}
+
+
+.zoho{
+  margin-top: 10px;
+}
+
+/* ── Change Password page (standalone, no Ant Form) ───────────────────────── */
+.change-password-page {
+  min-height: 100vh;
+  background: var(--gradient-background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
+  box-sizing: border-box;
+}
+
+.change-password-card {
+  width: 100%;
+  max-width: 400px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 42, 66, 0.2);
+  background: var(--bg-white);
+  padding: 28px 24px 24px;
+  box-sizing: border-box;
+}
+
+.change-password-card .change-password-header {
+  margin-bottom: 24px;
+}
+
+.change-password-card .change-password-title {
+  font-size: var(--font-size-22px);
+  font-weight: var(--font-weight-600);
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.change-password-card .change-password-desc {
+  font-size: var(--font-size-14px);
+  color: var(--text-tertiary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.change-password-card .change-password-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.change-password-card .change-password-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.change-password-card .change-password-label {
+  font-size: var(--font-size-12px);
+  font-weight: var(--font-weight-600);
+  color: var(--text-primary);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.change-password-card .change-password-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  font-size: var(--font-size-14px);
+  color: var(--text-primary);
+  background: var(--bg-white);
+  border: 1px solid var(--border-color, #e8e8e8);
+  border-radius: var(--border-radius);
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.change-password-card .change-password-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.change-password-card .change-password-input:hover {
+  border-color: var(--secondary-color);
+}
+
+.change-password-card .change-password-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(3, 73, 122, 0.12);
+}
+
+.change-password-card .change-password-error {
+  font-size: var(--font-size-14px);
+  color: var(--text-danger);
+  padding: 10px 12px;
+  background: rgba(210, 75, 78, 0.08);
+  border: 1px solid rgba(210, 75, 78, 0.2);
+  border-radius: var(--border-radius);
+}
+
+.change-password-card .change-password-btn {
+  width: 100%;
+  height: 44px;
+  margin-top: 4px;
+  font-size: var(--font-size-14px);
+  font-weight: var(--font-weight-600);
+  letter-spacing: 0.02em;
+  color: var(--text-white);
+  background: var(--btn-bg-primary);
+  border: 1px solid var(--btn-bg-primary);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.change-password-card .change-password-btn:hover:not(:disabled) {
+  background: var(--btn-bg-primary-hover);
+  border-color: var(--btn-bg-primary-hover);
+  color: var(--text-white);
+  transform: translateY(-1px);
+}
+
+.change-password-card .change-password-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.change-password-card .change-password-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}

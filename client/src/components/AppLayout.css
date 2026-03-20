@@ -1,0 +1,611 @@
+/* Centered layout — equal gap left/right, all content in center (reference image) */
+.app-layout-centering {
+  max-width: 1600px;
+  margin: 0px auto;
+  padding: 0 48px;
+  min-height: 100vh;
+  background: var(--color-page-bg);
+}
+
+/* Wrapper: full viewport width so navbar spans 100% of screen */
+.app-layout-wrapper {
+  width: 100vw;
+  min-width: 100%;
+  max-width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  box-sizing: border-box;
+}
+
+.app-layout-ref {
+  min-height: 100vh;
+  width: 100%;
+  max-width: none;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: stretch; /* full width so body can center its content */
+}
+
+/* Navbar: 100% of screen width — force full viewport */
+.app-header-full-width {
+  width: 100% !important;
+  min-width: 100%;
+  max-width: none !important;
+  box-sizing: border-box;
+  align-self: stretch; /* override parent align-items so header stays full width */
+}
+
+/* ——— Top header: logo + user only ——— */
+.app-layout-header-ref {
+  height: 56px;
+  padding: 0 20px;
+  background: #fff !important;
+  border-bottom: 1px solid var(--ref-border, #e8e8e8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Centered body: sidebar + content with equal left/right gaps (reference image 2) */
+.app-layout-body-centering {
+  display: flex;
+  flex: 1;
+  min-width: 100%; /* ensure full width so centering has room to work */
+  min-height: 0; /* allow flex child to shrink for scroll */
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 20px 48px 32px;
+  width: 100%;
+  box-sizing: border-box;
+  align-self: center; /* shrink-wrap and center for equal left/right gaps */
+  justify-content: center; /* center sidebar+content for equal left/right gaps */
+  overflow: hidden;
+}
+
+/* Proposal/Template edit page: full width, sidebar closed, proper view */
+.app-layout-body-centering.app-layout-editor-full {
+  max-width: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.app-body-ref.app-body-editor-full {
+  width: 100%;
+  max-width: none;
+}
+
+.app-layout-content-ref.app-layout-content-editor-full {
+  max-width: none;
+  padding: 0;
+  width: 100%;
+}
+
+
+.app-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.app-header-trigger-ref {
+  color: #5c5c5c !important;
+  font-size: 18px;
+}
+
+.app-header-logo-ref {
+  display: flex;
+  align-items: center;
+  margin-right: 4px;
+}
+
+.app-header-nav-ref {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.app-header-nav-ref a,
+.app-header-nav-library {
+  color: #3b3b3b;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid transparent;
+}
+
+/* .app-header-nav-ref a:hover,
+.app-header-nav-library:hover {
+  color: var(--color-primary);
+  background: rgba(91, 75, 138, 0.06);
+}
+
+.app-header-nav-ref a.active,
+.app-header-nav-library.active {
+  color: var(--color-primary);
+  background: rgba(91, 75, 138, 0.08);
+  border-color: rgba(91, 75, 138, 0.25);
+} */
+
+.app-header-nav-library-wrap {
+  position: relative;
+}
+
+.app-header-nav-library {
+  cursor: pointer;
+}
+
+.app-header-nav-caret {
+  font-size: 10px;
+  margin-left: 4px;
+}
+
+.app-header-search-wrap {
+  flex: 1;
+  max-width: 520px;
+  margin: 0 24px;
+  height: 40px;
+  background: #f5f5f5;
+  border: 1px solid var(--ref-border, #e8e8e8);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  position: relative;
+}
+
+.app-header-search-icon {
+  color: #8c8c8c;
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.app-header-search-input {
+  background: transparent !important;
+  font-size: 14px;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.app-header-search-input.ant-input:focus,
+.app-header-search-input.ant-input:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Search dropdown: alag div, filter + pages list, click → redirect */
+.app-header-search-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+  background: #fff;
+  border: 1px solid var(--ref-border, #e8e8e8);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 200;
+  max-height: 360px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.app-header-search-dropdown-head {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--ref-border, #e8e8e8);
+  background: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.app-header-search-dropdown-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--ref-text-muted, #6b6b6b);
+}
+
+.app-header-search-dropdown-filter {
+  font-size: 11px;
+  color: #8c8c8c;
+}
+
+.app-header-search-dropdown-list {
+  overflow-y: auto;
+  padding: 6px 0;
+  min-height: 60px;
+}
+
+.app-header-search-dropdown-loading,
+.app-header-search-dropdown-empty {
+  padding: 16px 14px;
+  text-align: center;
+  font-size: 13px;
+  color: #8c8c8c;
+}
+
+.app-header-search-dropdown-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: left;
+  color: #3b3b3b;
+}
+
+.app-header-search-dropdown-item:hover {
+  background: rgba(91, 75, 138, 0.08);
+}
+
+.app-header-search-dropdown-item-icon {
+  color: #8c8c8c;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.app-header-search-dropdown-item-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app-header-search-dropdown-item-status {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.app-header-search-dropdown-item-status.draft {
+  background: #f0f0f0;
+  color: #6b6b6b;
+}
+
+.app-header-search-dropdown-item-status.published,
+.app-header-search-dropdown-item-status.sent {
+  background: rgba(82, 196, 26, 0.15);
+  color: #389e0d;
+}
+
+.app-header-avatar-caret {
+  font-size: 10px;
+  margin-left: 4px;
+  color: #5c5c5c;
+}
+
+.app-header-right-ref {
+  display: flex;
+  align-items: center;
+}
+
+.app-header-user-btn-ref {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.app-header-user-btn-ref:hover {
+  background: #f0f0f0;
+}
+
+.app-header-avatar-ref {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ——— Sidebar: fixed, content scrolls independently ——— */
+.app-body-ref {
+  display: flex;
+  height: calc(100vh - 56px);
+  min-height: calc(100vh - 56px);
+  flex: 0 0 auto !important;
+  width: 1350px;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden; /* prevent body scroll; only content scrolls */
+}
+
+.app-sider-container-ref {
+  overflow: hidden;
+  height: calc(100vh - 56px);
+  flex-shrink: 0;
+  max-width: 280px;
+  background: transparent !important;
+  /* border-right: 1px solid var(--ref-border, #e8e8e8); */
+}
+
+.app-sider-container-ref .ant-layout-sider-children {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-sider-inner-ref {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0;
+  /* background-color: transparent; */
+}
+
+/* CREATE FOLDER row */
+.app-sider-create-ref {
+  padding: 16px 20px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app-sider-create-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--ref-text-muted, #6b6b6b);
+}
+
+.app-sider-create-btn-ref {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--ref-border, #e8e8e8);
+  border-radius: 4px;
+  background: #fff;
+  color: #6b6b6b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.app-sider-create-btn-ref:hover {
+  background: #f5f5f5;
+  border-color: #d9d9d9;
+  color: #3b3b3b;
+}
+
+.app-sider-create-btn-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 300;
+}
+
+.app-sider-divider {
+  display: none; /* Single separator — only border-top on bottom-nav */
+}
+
+/* Scrollable area: folders + bottom nav flow together, bottom nav right after last folder */
+.app-sider-scroll-ref {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  /* background-color: transparent; */
+}
+
+/* Folder list (Alex, Anushri style) */
+.app-sider-folders-ref {
+  flex-shrink: 0;
+  padding: 4px 12px 16px;
+}
+
+/* Wrapper for folder item: enables drop target for drag-and-drop without blocking Link */
+.app-sider-folder-item-wrap {
+  margin: 2px 0;
+  border-radius: 8px;
+}
+.app-sider-folder-item-wrap.app-sider-folder-item-drop-target {
+  background: rgba(91, 75, 138, 0.15);
+  box-shadow: 0 0 0 2px var(--color-primary);
+}
+
+.app-sider-folder-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.app-sider-folder-row .app-sider-folder-item-ref {
+  flex: 1;
+  min-width: 0;
+}
+
+.app-sider-folder-delete-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  color: #bfbfbf;
+  cursor: pointer;
+}
+
+.app-sider-folder-delete-btn:hover {
+  color: #ff4d4f;
+  background: rgba(255, 77, 79, 0.08);
+}
+
+.app-sider-folders-loading {
+  padding: 8px 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.app-sider-folder-item-ref {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  margin: 0;
+  border-radius: 8px;
+  color: #3b3b3b;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.app-sider-folder-item-ref:hover {
+  background: rgba(91, 75, 138, 0.08);
+  color: var(--color-primary);
+}
+
+.app-sider-folder-item-ref.active {
+  background: var(--color-sidebar-active-bg, rgba(91, 75, 138, 0.12));
+  color: var(--color-primary);
+}
+
+.app-sider-folder-icon-ref {
+  font-size: 18px;
+  color: #8c8c8c;
+}
+
+.app-sider-folder-item-ref.active .app-sider-folder-icon-ref {
+  color: var(--color-primary);
+}
+
+.app-sider-folder-label-ref {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Bottom nav: Shared with me, Pages, Archived, Deleted — flows below folders */
+.app-sider-bottom-nav-ref {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  padding: 12px 12px 24px;
+  border-top: 1px solid var(--ref-border, #e8e8e8);
+  gap: 2px;
+}
+
+.app-sider-nav-item-ref {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #3b3b3b;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.app-sider-nav-item-ref:not(.disabled):hover {
+  background: rgba(91, 75, 138, 0.08);
+  color: var(--color-primary);
+}
+
+.app-sider-nav-item-ref.active {
+  background: var(--color-sidebar-active-bg, rgba(91, 75, 138, 0.12));
+  color: var(--color-primary);
+}
+
+.app-sider-nav-item-ref .anticon {
+  font-size: 18px;
+  color: #8c8c8c;
+}
+
+.app-sider-nav-item-ref.active .anticon {
+  color: var(--color-primary);
+}
+
+.app-sider-nav-item-ref.disabled {
+  color: var(--ref-text-muted, #6b6b6b);
+  cursor: default;
+}
+
+.app-sider-nav-item-ref.disabled .anticon {
+  color: #b0b0b0;
+}
+
+/* ——— Main content: scrolls independently, sidebar stays fixed ——— */
+.app-layout-content-ref {
+  flex: 1;
+  max-width: 1200px;
+  padding: 24px 32px 32px;
+  min-height: 0; /* required for flex child to shrink and allow overflow */
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+  background: var(--color-page-bg);
+  margin-left: 0 !important;
+  min-width: 0;
+}
+
+.app-content-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  background: var(--color-page-bg);
+}
+
+.ant-layout-sider-collapsed .app-sider-inner-ref {
+  display: none;
+}
+
+/* Floating help button */
+.app-help-float-ref {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  padding: 10px 18px;
+  background: var(--color-primary);
+  color: #fff !important;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 24px;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(91, 75, 138, 0.35);
+  z-index: 50;
+}
+
+.app-help-float-ref:hover {
+  background: var(--color-primary-hover);
+  color: #fff !important;
+}
+

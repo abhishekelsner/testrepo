@@ -1,0 +1,388 @@
+/**
+ * AgreementModal — popup styling: dark header, scrollable content, accept form.
+ */
+
+/* Less margin from top; wider modal is set via width={960} in JSX */
+.agreement-modal.ant-modal {
+  top: 16px;
+  padding-bottom: 16px;
+  /* background-color: red; */
+  width: 100%;
+  margin-top: -7px;
+}
+
+.agreement-modal .ant-modal-content {
+  padding: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.agreement-modal .ant-modal-body {
+  padding: 0;
+  max-height: 95vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.agreement-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #2c2c2c;
+  color: #fff;
+}
+
+.agreement-modal-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.agreement-modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.agreement-modal-actions .ant-btn {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.agreement-modal-actions .ant-btn:hover {
+  color: #fff;
+}
+
+.agreement-modal-agree-header {
+  background: #3b4b5c !important;
+  border-color: #3b4b5c !important;
+  color: #fff !important;
+}
+
+.agreement-modal-agree-header:hover:not(:disabled) {
+  background: #2d3a47 !important;
+  border-color: #2d3a47 !important;
+  color: #fff !important;
+}
+
+.agreement-modal-close {
+  margin-left: 4px;
+}
+
+.agreement-modal-body {
+  overflow-y: auto;
+  flex: 1;
+  background: #fff;
+}
+
+.agreement-modal-content {
+  padding: 12px 32px 32px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #1f1f1f;
+  text-align: justify;
+}
+
+/* Injected agreement HTML (default or custom template) */
+.agreement-modal-content h1 {
+  font-size: 22px;
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+.agreement-modal-content h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 22px 0 10px;
+}
+.agreement-modal-content h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 14px 0 6px;
+}
+.agreement-modal-content section {
+  margin-bottom: 16px;
+}
+.agreement-modal-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0 14px;
+  font-size: 13px;
+}
+.agreement-modal-content table th,
+.agreement-modal-content table td {
+  border: 1px solid #e8e8e8;
+  padding: 8px 10px;
+  text-align: left;
+}
+.agreement-modal-content table th {
+  background: #f5f5f5;
+  font-weight: 600;
+}
+.agreement-modal-content .company {
+  font-weight: 600;
+  margin-top: 12px;
+}
+.agreement-modal-content ol,
+.agreement-modal-content ul {
+  margin: 6px 0 12px;
+  padding-left: 22px;
+}
+.agreement-modal-content li {
+  margin-bottom: 4px;
+}
+
+.agreement-modal-h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 24px 0 12px;
+  font-family: Georgia, serif;
+}
+
+.agreement-modal-h2:first-child {
+  margin-top: 0;
+}
+
+.agreement-modal-h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 16px 0 8px;
+}
+
+.agreement-modal-content p {
+  margin: 0 0 12px;
+}
+
+.agreement-modal-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 16px;
+  font-size: 13px;
+}
+
+.agreement-modal-table th,
+.agreement-modal-table td {
+  border: 1px solid #e8e8e8;
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.agreement-modal-table th {
+  background: #fafafa;
+  font-weight: 600;
+}
+
+.agreement-modal-company {
+  font-weight: 600;
+  margin-top: 16px !important;
+}
+
+.agreement-modal-ol,
+.agreement-modal-ul {
+  margin: 8px 0 16px;
+  padding-left: 24px;
+}
+
+.agreement-modal-ol li,
+.agreement-modal-ul li {
+  margin-bottom: 6px;
+}
+
+.agreement-modal-accept {
+  padding: 24px 32px 32px;
+  border-top: 1px solid #e8e8e8;
+  background: #fafafa;
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.agreement-modal-accept-intro {
+  margin-bottom: 20px;
+  color: #595959;
+}
+
+/* Scope all form styles to the modal so they never affect the page after close */
+.agreement-modal .agreement-modal-form {
+  max-width: 480px;
+  width: 100%;
+}
+
+.agreement-modal .agreement-modal-field {
+  margin-bottom: 16px;
+}
+
+.agreement-modal .agreement-modal-field label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.agreement-modal .agreement-modal-form .ant-input,
+.agreement-modal .agreement-modal-form .ant-input-affix-wrapper {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Checkbox row: checkbox and label inline, text wraps beside it */
+.agreement-modal .agreement-modal-checkbox-row {
+  margin-top: 12px;
+}
+
+.agreement-modal .agreement-modal-checkbox-row .ant-checkbox-wrapper {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  cursor: pointer;
+  white-space: normal;
+}
+
+.agreement-modal .agreement-modal-checkbox-row .ant-checkbox {
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* Keep checkbox layout and appearance intact inside agreement modal */
+.agreement-modal .ant-checkbox-wrapper {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5715;
+  cursor: pointer;
+}
+
+.agreement-modal .ant-checkbox {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  top: 0.2em;
+}
+
+.agreement-modal .ant-checkbox-inner {
+  display: block;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  min-height: 16px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.agreement-modal .ant-checkbox-checked .ant-checkbox-inner {
+  background: #1677ff;
+  border-color: #1677ff;
+}
+
+.agreement-modal .ant-checkbox-wrapper:hover .ant-checkbox-inner,
+.agreement-modal .ant-checkbox:hover .ant-checkbox-inner {
+  border-color: #1677ff;
+}
+
+.agreement-modal .ant-checkbox-input {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.agreement-modal-sign-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.agreement-modal-sign-btn {
+  background: #fffbe6 !important;
+  border-color: #ffe58f !important;
+  color: #1f1f1f !important;
+}
+
+.agreement-modal-zoho-btn {
+  border-color: #d9d9d9;
+  color: #1f1f1f;
+}
+
+.agreement-modal-agree-btn {
+  margin-top: 16px;
+  background: #1677ff !important;
+  border-color: #1677ff !important;
+}
+
+.agreement-modal-agree-btn:disabled {
+  color: rgba(0, 0, 0, 0.25) !important;
+}
+
+.agreement-modal-agreed {
+  width: 100%;
+  max-width: 480px;
+}
+
+.agreement-modal-agreed .agreement-modal-h2 {
+  margin-top: 0;
+}
+
+.agreement-modal-client-details {
+  margin: 0;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+}
+
+.agreement-modal-client-details p {
+  margin: 0 0 8px;
+  font-size: 14px;
+}
+
+.agreement-modal-client-details p:last-child {
+  margin-bottom: 0;
+}
+
+.agreement-modal-signature-display {
+  margin-top: 12px !important;
+}
+
+.agreement-modal-signature-display img {
+  display: block;
+  max-width: 280px;
+  max-height: 120px;
+  margin-top: 6px;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.agreement-modal-signature-preview {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.agreement-modal-signature-preview img {
+  max-width: 200px;
+  max-height: 80px;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.agreement-modal-signature-hint {
+  font-size: 12px;
+  color: #8c8c8c;
+}

@@ -1,0 +1,579 @@
+/* ── Brand Editor ─────────────────────────────────────────────────── */
+
+.brand-editor {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #fff;
+}
+
+/* Top bar */
+.brand-editor-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 32px;
+  border-bottom: 1px solid #e8e8e8;
+  background: #fff;
+  gap: 16px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.brand-editor-topbar-left {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  min-width: 0;
+}
+
+.brand-editor-topbar-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  white-space: nowrap;
+}
+
+.brand-editor-topbar-meta {
+  font-size: 11px;
+  color: #9b9b9b;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.brand-editor-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.brand-editor-btn-cancel {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  border-color: #d9d9d9 !important;
+  color: #3b3b3b !important;
+  background: #fff !important;
+}
+
+.brand-editor-btn-cancel:hover {
+  border-color: #bfbfbf !important;
+  color: #1a1a1a !important;
+}
+
+.brand-editor-btn-save {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  background: #1a7a6e !important;
+  border-color: #1a7a6e !important;
+  color: #fff !important;
+}
+
+.brand-editor-btn-save:hover {
+  background: #15665c !important;
+  border-color: #15665c !important;
+}
+
+/* Body */
+.brand-editor-body {
+  flex: 1;
+  padding: 0 48px 40px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Section */
+.brand-editor-section {
+  padding: 20px 0;
+}
+
+.brand-editor-divider {
+  height: 1px;
+  background: #e8e8e8;
+}
+
+.brand-editor-section-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand-editor-section-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.brand-editor-caret {
+  display: inline-block;
+  font-size: 18px;
+  color: #5c5c5c;
+  transform: rotate(90deg);
+  transition: transform 0.2s;
+  line-height: 1;
+  margin-top: -2px;
+}
+
+.brand-editor-caret--open {
+  transform: rotate(270deg);
+}
+
+.brand-editor-section-title {
+  font-size: 38px;
+  font-weight: 400;
+  color: #1a1a1a;
+  line-height: 1.2;
+}
+
+/* ── Colors ─────────────────────────────────────────────────────── */
+
+.brand-editor-colors {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.brand-color-swatch {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+  flex-shrink: 0;
+}
+
+.brand-color-swatch:hover {
+  transform: scale(1.06);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.brand-color-swatch--active {
+  border-color: #1a73e8;
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.25);
+}
+
+.brand-color-swatch-icon {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+.brand-color-swatch--add {
+  background: #f5f5f5 !important;
+  border: 2px dashed #c0c0c0 !important;
+  color: #9b9b9b;
+  font-size: 18px;
+}
+
+.brand-color-swatch--add:hover {
+  border-color: #a0a0a0 !important;
+  color: #5c5c5c;
+  background: #ebebeb !important;
+}
+
+/* Color popover (dark theme) */
+.brand-color-popover {
+  width: 200px;
+  background: #1c2333;
+  border-radius: 8px;
+  padding: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.brand-color-popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.brand-color-popover-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e0e0e0;
+}
+
+.brand-color-popover-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9b9b9b;
+  font-size: 14px;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+}
+
+.brand-color-popover-delete:hover {
+  color: #e57373;
+}
+
+.brand-color-presets {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.brand-color-preset {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.12s, border-color 0.12s;
+}
+
+.brand-color-preset:hover {
+  transform: scale(1.12);
+}
+
+.brand-color-preset--active {
+  border-color: #fff;
+}
+
+.brand-color-hex-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+
+.brand-color-hex-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+.brand-color-hex-input {
+  flex: 1;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  font-size: 13px;
+  font-family: 'Courier New', monospace;
+  color: #e0e0e0 !important;
+  min-width: 0;
+}
+
+.brand-color-hex-input:focus {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.brand-color-update-btn {
+  background: #5b3fb8 !important;
+  border-color: #5b3fb8 !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  border-radius: 6px !important;
+  height: 34px !important;
+}
+
+.brand-color-update-btn:hover {
+  background: #4a31a0 !important;
+  border-color: #4a31a0 !important;
+}
+
+/* Font picker popover overlay */
+.brand-font-picker-overlay .ant-popover-inner {
+  padding: 0 !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14) !important;
+}
+
+.brand-font-picker-overlay.ant-popover {
+  padding: 0 !important;
+}
+
+/* Color picker popover overlay */
+.brand-color-picker-overlay .ant-popover-inner {
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.brand-color-picker-overlay.ant-popover {
+  padding: 0 !important;
+}
+
+/* ── Fonts ───────────────────────────────────────────────────────── */
+
+.brand-editor-fonts-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.brand-editor-same-font-label {
+  font-size: 13px;
+  color: #5c5c5c;
+  white-space: nowrap;
+}
+
+.brand-editor-font-pairings-btn {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  border-color: #d9d9d9 !important;
+  color: #3b3b3b !important;
+  background: #fff !important;
+}
+
+.brand-editor-font-pairings-btn:hover {
+  border-color: #bfbfbf !important;
+}
+
+.brand-editor-fonts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 18px;
+}
+
+@media (max-width: 900px) {
+  .brand-editor-fonts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .brand-editor-fonts {
+    grid-template-columns: 1fr;
+  }
+}
+
+.brand-font-card {
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 16px;
+  background: #fff;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 110px;
+}
+
+.brand-font-card-header {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.brand-font-card-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: #1a73e8;
+  letter-spacing: 0.3px;
+}
+
+.brand-font-card-tag--agreements {
+  color: #757575;
+  background: #f0f0f0;
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 10px;
+}
+
+.brand-font-card-desc {
+  font-size: 11px;
+  color: #9b9b9b;
+  margin-left: 4px;
+}
+
+/* Row: font name (left) + Change button (right) */
+.brand-font-card-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.brand-font-card-name {
+  font-size: 20px;
+  font-weight: 500;
+  color: #1a1a1a;
+  line-height: 1.2;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.brand-font-change-btn {
+  align-self: flex-start;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  border-color: #d9d9d9 !important;
+  color: #3b3b3b !important;
+}
+
+.brand-font-change-btn:hover {
+  border-color: #aaa !important;
+  color: #1a1a1a !important;
+}
+
+/* Font card change button wrapper — anchor for dropdown */
+.brand-font-card-change-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Font picker dropdown — plain CSS, no Ant Design portal */
+.brand-font-picker {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 200;
+  width: 230px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.brand-font-picker-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid #f0f0f0;
+  background: #fafafa;
+}
+
+.brand-font-picker-search-icon {
+  color: #aaa;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.brand-font-picker-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 13px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #333;
+  background: transparent;
+  min-width: 0;
+}
+
+.brand-font-picker-input::placeholder {
+  color: #bbb;
+}
+
+.brand-font-picker-list {
+  max-height: 232px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 4px 0;
+  scrollbar-width: thin;
+  scrollbar-color: #ddd transparent;
+}
+
+.brand-font-picker-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.brand-font-picker-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.brand-font-picker-list::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 4px;
+}
+
+.brand-font-picker-option {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 8px 14px;
+  font-size: 13.5px;
+  color: #2c2c2c;
+  cursor: pointer;
+  transition: background 0.1s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0;
+  line-height: 1.5;
+  min-height: 40px;
+}
+
+.brand-font-picker-option:hover {
+  background: #f5f5f5;
+  color: #111;
+}
+
+.brand-font-picker-option--active {
+  background: #eef4ff;
+  color: #1a73e8 !important;
+  font-weight: 500 !important;
+}
+
+.brand-font-picker-option--active:hover {
+  background: #dceafe;
+}
+
+.brand-font-picker-empty {
+  padding: 16px 14px;
+  font-size: 13px;
+  color: #9b9b9b;
+  text-align: center;
+}
+
+/* ── Team Permissions ────────────────────────────────────────────── */
+
+.brand-editor-team-perms {
+  margin-top: 16px;
+}
+
+.brand-editor-team-perms-desc {
+  font-size: 14px;
+  color: #5c5c5c;
+  margin: 0;
+}

@@ -1,0 +1,588 @@
+/* ══════════════════════════════════════════════════════════════════════════════
+   PublicProposalView.css
+   Layout: sticky navbar → flex body [TOC sidebar | content]
+══════════════════════════════════════════════════════════════════════════════ */
+
+/* ── Root ───────────────────────────────────────────────────────────────────── */
+.public-proposal-view {
+  height: 100vh;        /* fixed to viewport — prevents window scroll */
+  overflow: hidden;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Loading / error ────────────────────────────────────────────────────────── */
+.public-proposal-loading,
+.public-proposal-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+  gap: 16px;
+  text-align: center;
+}
+
+/* ── Agreement already accepted / not allowed ───────────────────────────────── */
+.public-proposal-not-allowed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+  gap: 24px;
+  text-align: center;
+}
+
+.ppv-accepted-card {
+  max-width: 480px;
+  padding: 32px;
+  background: #fafafa;
+  border-radius: 12px;
+  border: 1px solid #eee;
+}
+
+/* ── Accepted and locked banner (top of page when agreement already accepted) ─── */
+.ppv-accepted-banner {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 40px;
+  background: #e0f7fa;
+  border-bottom: 1px solid #b2ebf2;
+  font-size: 14px;
+  font-weight: 500;
+  color: #00695c;
+}
+
+.ppv-accepted-banner-lock {
+  position: absolute;
+  left: 16px;
+  color: #00695c;
+  font-size: 14px;
+}
+
+.ppv-accepted-banner-check {
+  color: #2e7d32;
+  font-size: 16px;
+}
+
+.ppv-accepted-banner-text {
+  color: #00695c;
+}
+
+.ppv-accepted-banner-info {
+  position: absolute;
+  right: 16px;
+  color: #00695c;
+  font-size: 14px;
+  cursor: default;
+}
+
+/* ── Email entry banner (to accept agreement) ───────────────────────────────── */
+.ppv-email-banner {
+  padding: 16px 24px;
+  background: #f0f7ff;
+  border-bottom: 1px solid #d6e9ff;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.ppv-email-banner-text {
+  margin: 0;
+  font-size: 14px;
+  color: #1f1f1f;
+  flex: 1 1 100%;
+}
+
+.ppv-email-banner-form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex: 1 1 auto;
+}
+
+.ppv-email-banner-input {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  min-width: 220px;
+}
+
+.ppv-email-banner-input:focus {
+  outline: none;
+  border-color: #1890ff;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+.ppv-email-banner-btn {
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  background: #1890ff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.ppv-email-banner-btn:hover {
+  background: #40a9ff;
+}
+
+.ppv-email-banner-loading {
+  font-size: 12px;
+  color: #8c8c8c;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   STICKY NAVBAR
+══════════════════════════════════════════════════════════════════════════════ */
+.ppv-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  height: 52px;
+  background: #ffffff;
+  border-bottom: 1px solid #ebebeb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px 0 8px;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* Left */
+.ppv-navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1;
+}
+
+/* Right */
+.ppv-navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* ── Hamburger ─────────────────────────────────────────────────────────────── */
+.ppv-hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+
+.ppv-hamburger:hover { background: #f5f5f5; }
+
+.ppv-ham-line {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: #595959;
+  border-radius: 2px;
+}
+
+/* ── Title / meta in navbar ─────────────────────────────────────────────────── */
+.ppv-navbar-meta {
+  font-size: 13px;
+  color: #595959;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  flex: 1;
+}
+
+/* ── View Agreement button ─────────────────────────────────────────────────── */
+.ppv-agreement-btn {
+  padding: 7px 20px;
+  background: #1a1a2e;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+  letter-spacing: 0.01em;
+}
+
+.ppv-agreement-btn:hover { opacity: 0.88; }
+
+/* ── 3-dot button ─────────────────────────────────────────────────────────── */
+.ppv-dots-btn {
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  font-size: 18px;
+  color: #595959;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  letter-spacing: 1px;
+}
+
+.ppv-dots-btn:hover { background: #f5f5f5; }
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   BODY: flex row [sidebar | content]
+   min-height: 0 is critical — without it, flex children in a column-flex parent
+   default to min-height: auto and can grow beyond the allocated height, causing
+   window-level scroll and breaking the sidebar-fixed layout.
+══════════════════════════════════════════════════════════════════════════════ */
+.ppv-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;     /* allows this flex child to be constrained by parent height */
+  overflow: hidden;  /* seals the box — nothing leaks to window scroll */
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   TOC SIDEBAR — never scrolls, always fixed because ppv-body clips overflow
+══════════════════════════════════════════════════════════════════════════════ */
+.ppv-toc {
+  width: 280px;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: #ffffff;
+  border-right: 1px solid #ebebeb;
+  display: flex;
+  flex-direction: column;
+  /* width + opacity driven entirely by React inline style */
+  transition: flex-basis 0.26s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s;
+}
+
+/* ── TOC nav list ───────────────────────────────────────────────────────────── */
+.ppv-toc-nav {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px 0 16px;
+  min-height: 0; /* required for flex child overflow-y to work */
+}
+
+.ppv-toc-nav::-webkit-scrollbar { width: 3px; }
+.ppv-toc-nav::-webkit-scrollbar-track { background: transparent; }
+.ppv-toc-nav::-webkit-scrollbar-thumb { background: #e0e0e0; border-radius: 4px; }
+
+/* ── TOC item ───────────────────────────────────────────────────────────────── */
+.ppv-toc-item {
+  display: block;
+  padding: 5px 20px;
+  font-size: 13px;
+  color: #595959;
+  text-decoration: none;
+  line-height: 1.45;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.12s;
+}
+
+.ppv-toc-item:hover {
+  color: #1f1f1f;
+}
+
+.ppv-toc-item--active {
+  color: #1677ff;
+  font-weight: 500;
+}
+
+/* Level-based left padding */
+.ppv-toc-item--h1 { padding-left: 20px; font-size: 13px; color: #1f1f1f; font-weight: 500; }
+.ppv-toc-item--h2 { padding-left: 20px; font-size: 13px; }
+.ppv-toc-item--h3 { padding-left: 28px; font-size: 12px; color: #8c8c8c; }
+.ppv-toc-item--h4 { padding-left: 36px; font-size: 12px; color: #aaa; }
+.ppv-toc-item--h5 { padding-left: 44px; font-size: 11px; color: #bbb; }
+.ppv-toc-item--h6 { padding-left: 52px; font-size: 11px; color: #ccc; }
+
+/* Empty state */
+.ppv-toc-empty {
+  padding: 16px 20px;
+  font-size: 12px;
+  color: #bfbfbf;
+}
+
+/* ── TOC footer — org info ─────────────────────────────────────────────────── */
+.ppv-toc-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-top: 1px solid #f0f0f0;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.ppv-toc-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #0d9488;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  letter-spacing: 0.03em;
+}
+
+.ppv-toc-footer-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ppv-toc-footer-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1f1f1f;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ppv-toc-footer-sub {
+  font-size: 11px;
+  color: #8c8c8c;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ppv-toc-footer-chat {
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8c8c8c;
+  flex-shrink: 0;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.ppv-toc-footer-chat:hover {
+  border-color: #1677ff;
+  color: #1677ff;
+}
+
+.ppv-toc-footer-chat[data-tooltip] {
+  position: relative;
+}
+
+.ppv-toc-footer-chat[data-tooltip]::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 10px);
+  right: 0;
+  background: #1a1a2e;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: nowrap;
+  padding: 7px 10px;
+  border-radius: 6px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 300;
+}
+
+.ppv-toc-footer-chat[data-tooltip]::after {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 4px);
+  right: 9px;
+  border: 5px solid transparent;
+  border-top-color: #1a1a2e;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 300;
+}
+
+.ppv-toc-footer-chat[data-tooltip]:hover::before,
+.ppv-toc-footer-chat[data-tooltip]:hover::after {
+  opacity: 1;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   CONTENT AREA — the ONLY scrollable element on the page
+══════════════════════════════════════════════════════════════════════════════ */
+.ppv-content {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;      /* allow flex child to shrink so overflow-y: auto activates */
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth; /* handles smooth animation; JS uses behavior:'instant' */
+  padding-bottom: 80px;
+  box-sizing: border-box;
+}
+
+/* Thin custom scrollbar for content area */
+.ppv-content::-webkit-scrollbar { width: 5px; }
+.ppv-content::-webkit-scrollbar-track { background: transparent; }
+.ppv-content::-webkit-scrollbar-thumb { background: #d9d9d9; border-radius: 4px; }
+
+/* 1000px centred content container */
+.pub-content-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Per-block section */
+.pub-block-section {
+  background: #ffffff;
+  border-radius: 0;
+  margin: 0;
+  padding: 16px 0;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+
+/* Hero / full-width image blocks: break out of container to full viewport width (public view uses .pub-block-section--fullwidth) */
+.pub-block-section--fullwidth,
+.public-proposal-block--fullwidth {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+}
+
+.pub-block-section--fullwidth img,
+.public-proposal-block--fullwidth img {
+  width: 100%;
+  height: auto;
+  display: block;
+  vertical-align: middle;
+}
+
+.pub-block-section.has-bg {
+  background: transparent;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  .ppv-navbar-meta {
+    font-size: 12px;
+  }
+
+  .ppv-agreement-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ppv-toc.ppv-toc--open {
+    position: fixed;
+    top: 52px;
+    left: 0;
+    height: calc(100vh - 52px);
+    z-index: 150;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.12);
+  }
+}
+
+/* Scoped form/input styles so agreement modal close doesn't break page forms (Ant body overflow, etc.) */
+.public-proposal-view .ant-input,
+.public-proposal-view .ant-input-affix-wrapper,
+.public-proposal-view .ant-input-textarea {
+  box-sizing: border-box;
+}
+
+.public-proposal-view .ant-input,
+.public-proposal-view .ant-input-affix-wrapper {
+  width: 100%;
+  min-height: 32px;
+  padding: 4px 11px;
+  font-size: 14px;
+  line-height: 1.5715;
+  color: rgba(0, 0, 0, 0.88);
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.public-proposal-view .ant-input:hover,
+.public-proposal-view .ant-input-affix-wrapper:hover:not(.ant-input-affix-wrapper-disabled) {
+  border-color: #4096ff;
+}
+
+.public-proposal-view .ant-input:focus,
+.public-proposal-view .ant-input-affix-wrapper-focused {
+  border-color: #4096ff;
+  outline: 0;
+  box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
+}
+
+.public-proposal-view .ant-input-textarea textarea {
+  box-sizing: border-box;
+  padding: 4px 11px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+}
+
+.public-proposal-view form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.public-proposal-view .ant-btn {
+  box-sizing: border-box;
+  line-height: 1.5715;
+  border-radius: 6px;
+}
+
+.public-proposal-view .ant-btn-primary {
+  background: #1677ff;
+  border-color: #1677ff;
+  color: #fff;
+}

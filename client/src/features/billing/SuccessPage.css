@@ -1,0 +1,11 @@
+.success-page {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.success-page .ant-result {
+  max-width: 480px;
+}

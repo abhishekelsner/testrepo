@@ -1,0 +1,216 @@
+/**
+ * Central theme — single source for all common CSS.
+ * Import once in main.jsx. Elsner design system variables + semantic mappings.
+ */
+
+:root {
+  /* ——— Elsner design system ——— */
+  --header-bg: linear-gradient(-303deg, #002742, #2772a8 56%, #043152);
+  --primary-color: #03497a;
+  --secondary-color: #007ac1;
+  --tertiary-color: #00bdf2;
+  --quaternary-color: #f56f07;
+  --transparent-color: #fff0;
+  --bg-primary: #002742;
+  --ant-modal-header: #002742;
+  --bg-secondary: #03497a;
+  --bg-sidebar: #013153;
+  --bg-white: #fff;
+  --bg-black: #000;
+  --bg-gray-hover: #3f43500a;
+  --bg-light-hover: #ffffff14;
+  --bg-mention-highlight: #ffd470;
+  --bg-gray-shade1: #8d93a5;
+  --bg-gray-shade2: #939393;
+  --bg-gray-shade3: #f7f8f8;
+  --bg-gray-shade4: #d1d1d1;
+  --bg-gray-shade5: #acacac;
+  --bg-gray-shade6: #3f435029;
+  --bg-active-color: #1c58d9;
+  --side-bar-hover: #0027428a;
+  --text-primary: #121212;
+  --text-secondary: #007ac1;
+  --text-chat: #3f4350;
+  --text-tertiary: #a1a1a1;
+  --text-quaternary: #03497a;
+  --text-white: #fff;
+  --text-black: #000;
+  --text-dd-primary: #3b3b3c;
+  --text-danger: #d24b4e;
+  --text-success: #3db887;
+  --text-active: #1c58d9;
+  --text-gray-shade1: #8d93a5;
+  --text-gray-shade2: #939393;
+  --text-gray-shade3: #f7f8f8;
+  --text-gray-shade4: #d1d1d1;
+  --text-gray-shade5: #acacac;
+  --chat-headr-bg: #f7f8f8;
+  --chat-body-wrapper: #fff;
+  --post-preview: #fff;
+  --ant-modal-border: #0000;
+  --side-menu-color: hsla(0, 0%, 100%, 0.722);
+  --btn-bg-primary: #03497a;
+  --btn-bg-primary-hover: #002742;
+  --btn-bg-secondary: #007ac1;
+  --border-active: #1c58d9;
+  --font-size-12px: 12px;
+  --font-size-14px: 14px;
+  --base-size: 16px;
+  --font-size-18px: 18px;
+  --font-size-20px: 20px;
+  --font-size-22px: 22px;
+  --font-size-24px: 24px;
+  --font-size-28px: 28px;
+  --font-size-32px: 32px;
+  --font-size-34px: 34px;
+  --font-size-38px: 38px;
+  --font-size-46px: 46px;
+  --font-weight-300: 300;
+  --font-weight-400: 400;
+  --font-weight-500: 500;
+  --font-weight-600: 600;
+  --font-weight-700: 700;
+  --font-weight-800: 800;
+  --border-radius: 8px;
+  --h1-font-size: 44px;
+  --h2-font-size: 38px;
+  --h3-font-size: 32px;
+  --h4-font-size: 28px;
+  --h5-font-size: 24px;
+  --h6-font-size: 18px;
+  --white-color: #fff;
+  --header-bg-color: #002742;
+  --siderbar-bg-color: #03497a;
+  --gradient-background: linear-gradient(180deg, #03497a, #007ac1);
+  --background-color: #187cb7;
+  --border-color: #d1d1d1;
+  --pinned-message-bg: #fff4dc;
+  --text-editor-bg: #fff;
+  --chat-shared-files: #fff;
+  --scrollbar-track-color: hsla(0, 0%, 75%, 0.123);
+  --scrollbar-thumb-color: #6a6b6b5e;
+  --mention-highlight-link-bg: #f0f8ff;
+  --mention-highlight-link: #0078d4;
+  --dark-btn-ball: #fff;
+  --dark-btn-bg: #011e32;
+  --moon-color: #fff;
+  --input-placeholder: #a7a7a7;
+  --show-btn-bg-color: #fff;
+  --down-arrow-btn-bg: #fff;
+  --ant-btn-bg-hover: #3f435014;
+  --ant-btn-color-hover: hsla(0, 1%, 39%, 0.685);
+  --ant-btn-color: #59595a8f;
+  --chat-menu-box-shadow: 1px 3px 7px 0px rgba(0, 0, 0, 0.059);
+  --show-btn-color: #03497a;
+  --show-btn-hover: #f7f8f8;
+  --ant-modal-footer: #fff;
+  --header-btn-color: #5a5959cc;
+  --edit-message-color: #3f43508f;
+  --epr-category-label-bg: #ffffffe6;
+  --ant-tag-bg: #44454814;
+  --unread-msg-count-bg: #fff;
+  --unread-msg-count-color: #0a0a0a;
+  --mantion-user-color: #dddfe4;
+  --info-bg-color: #dddfe442;
+  --img-open-modal-bg: #000000a8;
+  --mantion-select-hover: #cccccc44;
+  --mantion-select-hover-btn: #03497a;
+
+  /* ——— Reference-style admin: light grey/white + purple ——— */
+  --ref-header-bg: #fff;
+  --ref-sidebar-bg: #fafafa;
+  --ref-sidebar-active-bg: rgba(91, 75, 138, 0.12);
+  --ref-primary: #5b4b8a;
+  --ref-primary-hover: #4a3d72;
+  --ref-border: #e8e8e8;
+  --ref-page-bg: #f5f5f5;
+  --ref-text-muted: #6b6b6b;
+
+  /* ——— Semantic mappings (for existing components & Ant Design) ——— */
+  --color-primary-dark: var(--ref-primary-hover);
+  --color-sidebar-bg: var(--ref-sidebar-bg);
+  --color-sidebar-active-bg: var(--ref-sidebar-active-bg);
+  --color-sidebar-text: var(--text-primary);
+  --color-primary: var(--ref-primary);
+  --color-primary-hover: var(--ref-primary-hover);
+  --color-primary-bg: var(--ref-primary);
+  --color-primary-bg-subtle: rgba(91, 75, 138, 0.08);
+  --color-link: var(--ref-primary);
+  --color-accent: var(--ref-primary);
+  --color-accent-hover: var(--ref-primary-hover);
+  --color-border: var(--ref-border);
+  --color-highlight: var(--ref-page-bg);
+  --color-page-bg: var(--ref-page-bg);
+  --color-card-bg: var(--bg-white);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-tertiary);
+  --color-text-inverse: var(--text-white);
+  --color-danger: var(--text-danger);
+  --color-success: var(--text-success);
+  --color-warning: var(--quaternary-color);
+
+  --shadow-card: var(--chat-menu-box-shadow);
+  --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-modal: 0 8px 24px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.08);
+  --radius-card: var(--border-radius);
+  --radius-button: var(--border-radius);
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --sidebar-width: 240px;
+  --header-height: 56px;
+  --content-max-width: 1400px;
+}
+
+html, body {
+  width: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--color-text-primary);
+  background-color: var(--color-page-bg);
+}
+
+#root {
+  width: 100%;
+  min-width: 0;
+}
+
+.app-card,
+.ant-card {
+  border-radius: var(--radius-card) !important;
+  box-shadow: var(--shadow-card) !important;
+}
+
+.app-modal-card {
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-modal);
+  background: var(--color-card-bg);
+}
+
+/* Full-viewport loading state to prevent white blink on route change / lazy load */
+.app-page-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  background: var(--bg-gray-shade3, #f5f5f5);
+}
+
+.app-content {
+  padding: var(--spacing-md);
+}
+@media (min-width: 768px) {
+  .app-content { padding: var(--spacing-lg); }
+}
+@media (min-width: 992px) {
+  .app-content {
+    padding: var(--spacing-lg);
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+  }
+}
