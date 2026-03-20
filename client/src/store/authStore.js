@@ -48,6 +48,7 @@ export const useAuthStore = create((set, getState) => ({
     if (data.token) localStorage.setItem(TOKEN_KEY, data.token);
     if (data.refreshToken) localStorage.setItem(REFRESH_KEY, data.refreshToken);
     set({ user: data.user });
+    console.log("fetched data",data);
     return data.user;
   },
 
