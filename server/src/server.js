@@ -1,10 +1,10 @@
 import './config/loadEnv.js';
 import { connectDb } from './config/db.js';
 import app from './app.js';
-import dns from "node:dns/promises"
+//import dns from "node:dns/promises"
 
 // console.log("logging dns ", dns.getServers())
-dns.setServers(["1.1.1.1"]);
+//dns.setServers(["1.1.1.1"]);
 
 const PORT = process.env.API_PORT || 3001;
 
